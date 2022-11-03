@@ -6,28 +6,16 @@ from playsound import playsound
 import os
 import pyttsx3 as p
 import moviepy.editor
-from googletrans import Translator
-import sys
 from youtube_transcript_api import YouTubeTranscriptApi
 import speech_recognition as sr
-from googletrans import Translator
-from re import sub
-import sys
 from pytube import YouTube
-import moviepy.editor
-from googletrans import Translator
-import sys
 import utubeapi
-from googletrans import Translator
-import moviepy.editor
 from pytube import YouTube
 import os
-import moviepy.editor
 import speech_recognition as sr
 from googletrans import Translator
-import socket
-import threading
 import sys
+from gevent.pywsgi import WSGIServer
 app = Flask(__name__)
 @app.route('/', methods=['POST','GET'])
 def index_home():
@@ -58,7 +46,7 @@ def index_tool1():
 def index_2():
     if request.method=='POST':
         tool2=request.form.get('url')
-        destination = "D:\Dream Project"
+        #destination = "D:\Dream Project"
         video_link = tool2
         try:
             video = YouTube(video_link)
@@ -74,7 +62,7 @@ def index_tool3():
         tool3=request.form.get('link1')
         yt = YouTube(str(tool3))
         video = yt.streams.filter(only_audio=True).first()
-        destination = "D:\Dream Project"
+        destination = ""#"D:\Dream Project"
         out_file = video.download(output_path=destination)
         new_file = '.mp3'
         os.rename(out_file, new_file)
@@ -84,7 +72,7 @@ def index_4():
     return render_template('4.html')
 @app.route('/ovt1', methods=['POST','GET'])
 def index_41():
-    vi_au = askopenfilename()
+    vi_au = "" #askopenfilename()
     video = moviepy.editor.VideoFileClip(vi_au)
     audio = video.audio
     audio.write_audiofile("newaudio.wav")
@@ -129,7 +117,7 @@ def index_6():
     return render_template('6.html')
 @app.route('/ova1', methods=['POST','GET'])
 def index_61():
-    vi_au = askopenfilename()
+    vi_au = "" #askopenfilename()
     video = moviepy.editor.VideoFileClip(vi_au)
     audio = video.audio
     audio.write_audiofile("urnewaudio.wav")
@@ -140,7 +128,7 @@ def index_7():
 @app.route('/aft1', methods=['POST','GET'])
 def index_71():
     r = sr.Recognizer()
-    vi_au = askopenfilename()
+    vi_au = "" #askopenfilename()
     with sr.AudioFile(vi_au) as source:
             audio = r.record(source)
             text = r.recognize_google(audio)
@@ -186,4 +174,6 @@ def index_contact():
 @app.route('/abs', methods=['POST','GET'])
 def index_abt():
     return render_template('about_us.html')
-app.run()
+if __name__ == '__main__':
+    http_server = WSGIServer(('', 5000), app)
+    http_server.serve_forever()
