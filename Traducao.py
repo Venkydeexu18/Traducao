@@ -15,7 +15,7 @@ import os
 import speech_recognition as sr
 from googletrans import Translator
 import sys
-from gevent.pywsgi import WSGIServer
+from waitress import serve
 app = Flask(__name__)
 @app.route('/', methods=['POST','GET'])
 def index_home():
@@ -175,5 +175,4 @@ def index_contact():
 def index_abt():
     return render_template('about_us.html')
 if __name__ == '__main__':
-    http_server = WSGIServer(('', 5000), app)
-    http_server.serve_forever()
+    serve(app, host="0.0.0.0", port=8080)
