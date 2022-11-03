@@ -25,7 +25,8 @@ import os
 import moviepy.editor
 import speech_recognition as sr
 from googletrans import Translator
-
+import socket
+import threading
 import sys
 app = Flask(__name__)
 @app.route('/', methods=['POST','GET'])
@@ -185,4 +186,4 @@ def index_contact():
 @app.route('/abs', methods=['POST','GET'])
 def index_abt():
     return render_template('about_us.html')
-# app.run(debug=False)
+app.run()
