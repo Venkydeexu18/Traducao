@@ -1,6 +1,6 @@
 from youtube_transcript_api import YouTubeTranscriptApi
 import speech_recognition as sr
-from googletrans import Translator
+from googletrans import Translator1
 from re import sub
 import sys
 def generate_transcript(id):
