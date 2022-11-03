@@ -185,4 +185,4 @@ def index_contact():
 @app.route('/abs', methods=['POST','GET'])
 def index_abt():
     return render_template('about_us.html')
-app.run(debug=False)
+#app.run(debug=False)
