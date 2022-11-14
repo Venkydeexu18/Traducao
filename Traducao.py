@@ -15,8 +15,6 @@ import os
 import speech_recognition as sr
 from googletrans import Translator
 import sys
-from waitress import serve
-from streamlit.scriptrunner.script_run_context import get_script_run_ctx as get_report_ctx
 app = Flask(__name__)
 @app.route('/', methods=['POST','GET'])
 def index_home():
