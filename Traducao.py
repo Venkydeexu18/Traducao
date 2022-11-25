@@ -10,11 +10,8 @@ from youtube_transcript_api import YouTubeTranscriptApi
 import speech_recognition as sr
 from pytube import YouTube
 import utubeapi
-from pytube import YouTube
-import os
-import speech_recognition as sr
 from googletrans import Translator
-import sys
+from tkinter import filedialog
 app = Flask(__name__)
 @app.route('/', methods=['POST','GET'])
 def index_home():
@@ -173,5 +170,4 @@ def index_contact():
 @app.route('/abs', methods=['POST','GET'])
 def index_abt():
     return render_template('about_us.html')
-if __name__ == '__main__':
-    serve(app, host="0.0.0.0", port=80)
+app.run(host="0.0.0.0", port=80)
